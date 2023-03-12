@@ -600,6 +600,21 @@ Figure 8.6: Without (Left) and With (Right) Gaming Tolerance:
 ./mlfq.py --numQueues=3 --jlist=0,200,0:75,100,9 --quantum=10 --iotime=1 --boost=0 -c
 ```
 
+3. How would you configure the scheduler parameters to behave just like a round-robin scheduler?
+
+By setting only one queue and a fixed quantum:
+
+```bash
+./mlfq.py --numQueues=1 --quantum=10 --numJobs=10
+```
+4. Craft a workload with two jobs and scheduler parameters so that one job takes advantage of the older Rules 4a and 4b (turned on with the -S flag) to game the scheduler and obtain 99% of the CPU over a particular time interval.
+
+Job 1 obtain 99% of the CPU over 50<=T<=150:
+
+```bash
+./mlfq.py --numQueues=3 --quantum=10 --jlist=0,200,0:50,99,9 --iotime=1 -S -c
+```
+
 ## Chapter 8: Multi-level feedback ("Run mlfq.py") - Feedback and Used Time
 
 ### Overall
